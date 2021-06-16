@@ -1,0 +1,83 @@
+\chapter{Introduction}
+\section{Motivation}
+
+Diabetic retinopathy (DR) is an eye disease that commonly arises as a complication of diabetes.
+It is estimated that by the year 2045, 693 million people worldwide will be diabetic.
+Of these, nearly all of those with type 1 and two-thirds of those with type 2 will be suffering some degree of retinopathy within 20 years of receiving their diagnosis \cite{Mathure014444}.
+Despite DR being preventable with early detection and intervention, this is made difficult by the fact that the early stages of DR show no symptoms and may only be identified by screening.
+However, the scalability of mass screening is severely limited by the availability of medical professionals, causing DR to remain the leading cause of blindness in the UK \cite{Liewe004015}.
+Currently, diagnosis requires manual inspection of retinal fundus images for the presence of abnormalities.
+This is a time-consuming and error-prone process for ophthalmologists who, even when available, have been shown to be inconsistent \cite{DBLP:journals/corr/abs-1710-01711}.
+For this reason, automated and semi-automated techniques for DR diagnosis have been a popular topic of research, going back as far as 1984 \cite{olddr}.
+As more sophisticated and powerful methods are developed, we come ever closer to accessible screening for \emph{all} susceptible individuals.
+
+The presence of DR is characterised by the formation of lesions on a patient's retina, the type and quantity of which indicate the severity of the disease.
+Grading (i.e. classifying) the progression of diabetic retinopathy that a patient exhibits allows for the most effective and timely treatment to be given. 
+Moreover, the ability to identify the precise locations of these lesions and distinguish them from the healthy parts of a retina ensures that the most appropriate and interpretable diagnosis possible can be provided, as well as having uses in aiding surgical procedures. 
+These two classification and semantic segmentation tasks are the two major research interests at the intersection of machine learning and diabetic retinopathy treatment.
+
+Developments in deep learning over the past decade have sparked a number of breakthroughs in the field of medical imaging \cite{LUNDERVOLD2019}.
+Deep neural networks provide state-of-the-art models across a variety of domains and continue to show even greater potential.
+These innovations are fuelled by greater quantities of data, allowing models to generalise to unseen examples.
+It is this insatiable hunger for data that presents one of the primary obstacles in automated DR diagnosis, as large-scale, annotated datasets are scarce.
+
+An easy way to improve data diversity is by applying classical data augmentation techniques such as reflections, crops, rotations, and colour perturbations.
+However, these methods produce images that are highly correlated, and ultimately limited in their diversity.
+A more advanced method of image simulation has been to hand-craft complex mathematical models representing the anatomy of the eye, from which images can be sampled.
+More recently, with the rise of data-driven techniques, we have seen a paradigm shift away from this top-down approach to a bottom-up approach of learning the data distribution \emph{directly} from the data itself.
+This has been made possible by the introduction of Generative Adversarial Networks (GANs).
+The aim of this project is to leverage these generative models, as well as other data augmentation techniques, to produce realistic synthetic training data in large volumes.
+
+Achieving large-scale data generation with arbitrary labels would yield significant improvements in the ability of neural networks to both semantically segment retinal fundus images, as well as assign image-level grades.
+Ultimately, with enough high-quality synthetic data, deep learning models are poised to \emph{surpass} human ability in diagnosing DR from fundus images.
+This project represents a step towards the goal of fully-automated retinal screening for the detection of diabetic retinopathy, by presenting methods to combat the scarcity of data.
+
+\section{Objectives and Challenges}
+
+The aim of this project is to investigate whether it is feasible to enhance the performance of DR diagnosis models by training on synthetic data.
+This can be summarised by the following objectives:
+
+\begin{enumerate}
+    \item Establish and compare methods for the generation of synthetic retinal fundus images that are:
+    \begin{enumerate}
+        \item conditioned on DR severity; and
+        \item paired with segmentation maps. 
+    \end{enumerate}
+    \item Investigate how training on synthetic data can affect the performance of:
+    \begin{enumerate}
+        \item lesion segmentation models; and
+        \item severity classification models.
+    \end{enumerate}
+\end{enumerate}
+
+While there is an established body of work on using generative models to create natural-looking images, their use in generating synthetic training data -- and in particular semantic labels -- remains nascent.
+The absence of a large body of literature introduces more unknowns into determining the success of this project.
+
+Somewhat ironically, the scarcity of existing data makes it difficult to train effective models to generate further, synthetic data.
+Motivated by this, we will examine both a learning-based method, as well as a ``naive'', heuristic-based method.
+
+Lastly, large, unstable models and limited access to hardware mean that we must be extremely economical with the experiments we choose to run, making tuning difficult.
+
+\section{Contributions}
+
+This work's main contributions are:
+
+\begin{description}
+    \item[Exploratory Data Analysis] \hfill \\
+    We begin by providing a survey and analysis of datasets for training such generative models in \Cref{cha:data}.
+    The goal of this is to expose any biases present in the data, which may inform future work.
+    As an additional contribution, we provide new manual optic disc annotations for several datasets.
+    
+    \item[Semantic Synthesis of Diabetic Retinal Fundus Images] \hfill \\
+    In \Cref{cha:labels}, we present novel methods to generate synthetic semantic labels, conditioned on DR severity, thereby providing downstream tasks with both segmentation maps and DR severity information.
+    We go on to translate these semantic labels into realistic retinal fundus images in \Cref{cha:retinas}, creating pairs of semantic labels and fundus images.
+    We provide insights on how existing techniques must be adapted for this domain, building on the existing literature.
+    
+    \item[Evaluation of Synthetic Data on Downstream Tasks] \hfill \\
+    Finally, in \Cref{cha:evaluation} we compare and contrast different approaches to training on synthetic data for various downstream tasks in order to evaluate the viability of generated images as a means of data augmentation.
+\end{description}
+
+\section{Publication}
+ 
+A preliminary version of this work was accepted as a short paper to MIDL 2021.
+Its findings, and impact on this version of the project are discussed briefly in \Cref{sec:prelim}.

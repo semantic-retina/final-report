@@ -1,0 +1,153 @@
+\documentclass[a4paper, 11pt, twoside]{report}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Listings package for code formatting.
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  breaklines=true,
+}
+
+
+% Set up referencing.
+
+% style=numeric - Use [1], [1,2], etc. in text
+% sorting=none - Don't sort references, leave them in order referenced in text
+% terseinits=true - Don't put periods after initials
+% giveninits=true - Initialise given names
+% minbibnames=6 - Always show at least 6 names if available
+% maxbibnames=6 - Truncate lists of authors above 6 to [minbibnames] et al.
+\usepackage[style=numeric, sorting=none, terseinits=true, giveninits=true, minbibnames=6, maxbibnames=6]{biblatex}
+
+% Write surnames before given names.
+\DeclareNameAlias{default}{family-given}
+
+% Get rid of the comma after the surname.
+\renewcommand*{\revsdnamepunct}{}
+
+% Small bibliography text.
+\AtBeginBibliography{\small}
+
+% Use "References" instead of "Bibliography".
+\AtBeginDocument{\renewcommand{\bibname}{References}}
+
+% Set up reference database
+\addbibresource{./bibs/introduction.bib}
+\addbibresource{./bibs/background.bib}
+\addbibresource{./bibs/datasets.bib}
+\addbibresource{./bibs/labels.bib}
+\addbibresource{./bibs/evaluation.bib}
+\addbibresource{./bibs/ethics.bib}
+\addbibresource{./bibs/conclusion.bib}
+
+\usepackage{xcolor}
+\usepackage{csquotes}
+
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+%% Useful packages
+\usepackage[all]{nowidow}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{cleveref}
+\usepackage{multirow}
+
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage[ruled]{algorithm2e}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{csquotes}
+\usepackage{pgfgantt}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+% Used for checkmarks.
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+% Used for bullets in tables.
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+
+\title{Semantic Synthesis of Diabetic \\ \vspace{0.1cm} Retinal Fundus Images}
+\author{Joon-Ho Son}
+
+\begin{document}
+\input{title/title.tex}
+
+% Make chapter headings smallers to save space.
+\makeatletter
+\def\@makechapterhead#1{%
+  {\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+        \huge\bfseries \@chapapp\space \thechapter
+        \par\nobreak
+        \vskip 15\p@
+    \fi
+    \interlinepenalty\@M
+    \Huge \bfseries #1\par\nobreak
+    \vskip 30\p@
+  }}
+\def\@makeschapterhead#1{%
+  {\parindent \z@ \raggedright
+    \normalfont
+    \interlinepenalty\@M
+    \Huge \bfseries  #1\par\nobreak
+    \vskip 30\p@
+  }}
+\makeatother
+
+\begin{abstract}
+Retinal fundus imaging is a modality that’s quick and easy to obtain, however its usefulness is limited by the availability of human graders.
+With advancements in deep learning, data-driven models may facilitate the process of diagnosis, alleviating this bottleneck. 
+Despite this, training robust machine learning models requires manually annotated labels en-masse, which are costly to obtain, and remains to be one of the primary obstacles in producing generalisable models. 
+This challenge can be viewed in two aspects: the scarcity of manually annotated ground truths such as lesion segmentation maps, and class imbalance in available datasets.
+Both of these can be seen in datasets designed for classification and segmentation tasks related to diabetic retinopathy (DR).
+
+In this project, we propose a novel two-step process for generating photo-realistic fundus images conditioned on synthetic ``ground truth'' semantic labels.
+First, synthetic semantic labels for retina structures and lesions are generated from random noise, conditioned on DR severity. 
+These are then subsequently used to condition an image-to-image translation model to create the final retinal fundus image.
+We compare the performance of these sophisticated generative models against a simple data augmentation method.
+
+We go on to demonstrate its potential to improve performance on downstream tasks in classifying and segmenting diabetic retinal fundus images. 
+\end{abstract}
+
+\renewcommand{\abstractname}{Acknowledgements}
+\begin{abstract}
+Firstly, I would like to express my gratitude to my supervisor \textbf{Dr Benjamin Hou} for his unwavering support and guidance throughout this project.
+I would also like to thank my second marker \textbf{Dr Amir Alansary} for his valuable feedback during the early stages.
+
+I reserve special thanks for my mother, whose countless sacrifices made a better life possible for her sons.
+\end{abstract}
+
+\tableofcontents
+% \listoffigures
+% \listoftables
+
+\input{introduction/introduction.tex}
+\input{background/background.tex}
+\input{datasets/datasets.tex}
+\input{labels/labels.tex}
+\input{retinas/retinas.tex}
+\input{evaluation/evaluation.tex}
+\input{conclusion/conclusion.tex}
+\input{appendix/appendix.tex}
+
+\printbibliography
+
+\end{document}

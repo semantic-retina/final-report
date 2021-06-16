@@ -1,0 +1,89 @@
+\appendix
+
+\chapter{Supplementary Materials} \label{cha:supp}
+
+\begin{description}
+\item[Codebase] \url{https://github.com/semantic-retina/semantic-retina-generation}
+\item[Materials] \url{https://github.com/semantic-retina/supplementary-materials}
+\end{description}
+
+\section{FGADR Exclusion List} \label{sec:fgadr_excl}
+
+This is a list of files that we determined too coarse to be used as segmentation maps, and were therefore excluded from our training data.
+It can be found in CSV format in the supplementary materials repository under \lstinline{data/fgadr_denylist.csv}.
+
+\section{Optic Disc Annotations} \label{sec:od}
+
+For this project, we manually annotated the optic discs for the FGADR and DiaRetDB1 datasets.
+This was done using the open-source Make Sense annotation tool\footnote{\url{https://www.makesense.ai}}, and are stored as JSON files under the \lstinline{data} directory.
+Utilities for pre-processing datasets using these files are included in the main code repository.
+Inferred annotations for e-ophtha were collected as detailed in \Cref{sec:optic_disc_inference}, and are stored as PNG files containing binary masks under the \lstinline{data/eophtha_od} directory.
+
+\section{Models} \label{sec:models}
+
+For reproducibility, the supplementary materials repository contains all model weights used in this project, including the ACGAN, ProGAN, ResNet, and U-Net.
+These are contained under the \lstinline{models} directory.
+
+\section{Raw Data} \label{cha:raw_data}
+
+Raw data collected from experiments can be found as spreadsheet files under the \lstinline{raw data} directory.
+
+\section{Mask Overlay Tool}
+\begin{description}
+\item[Mask Overlay Tool] \url{https://github.com/semantic-retina/mask-overlay}
+\end{description}
+
+The mask overlay tool is a small command-line program built to create labelled retinal fundus image diagrams, such as \Cref{fig:lesions}. 
+
+% \chapter{Ethics Checklist}
+% \Cref{tab:ethicschecklist} presents an abridged version of the \emph{Ethics Checklist} provided by the Department of Computing. Issues identified in the checklist are discussed in \Cref{sec:ethics}.
+% 
+% \begin{longtable}{p{0.01\textwidth}>{\raggedright}p{0.85\textwidth}r}
+% \toprule
+%    \multicolumn{2}{l}{Section 1: Humans} \\
+%    & Does your project involve human participants? & \xmark \\
+% \midrule
+%    \multicolumn{2}{l}{Section 2: Protection of Personal Data} \\
+%    & Does your project involve personal data collection and/or processing? & \xmark \\
+%    & Does it involve the collection and/or processing of sensitive personal data? & \xmark \\
+%    & Does it involve processing of genetic information? & \xmark \\
+%    & Does it involve tracking or observation of participants? & \xmark \\
+%    & Does your project involve further processing of previously collected personal data (secondary use)? & \xmark \\
+% \midrule
+%    \multicolumn{2}{l}{Section 3: Animals} \\
+%    & Does your project involve animals? & \xmark \\
+% \midrule
+%    \multicolumn{2}{l}{Section 4: Developing Countries} \\
+%    & Does your project involve developing countries? & \xmark \\
+%    & If your project involves low and/or lower-middle income countries, are any benefit-sharing actions planned? & \xmark \\
+%    & Could the situation in the country put the individuals taking part in the project at risk? & \xmark \\
+% \midrule
+%    \multicolumn{2}{l}{Section 5: Environmental Protection and Safety} \\
+%    & Does your project involve the use of elements that may cause harm to the environment, animals or plants? & \xmark \\
+%    & Does your project involve the use of elements that may cause harm to humans, including project staff? & \xmark \\
+% \midrule 
+%    \multicolumn{2}{l}{Section 6: Dual Use} \\
+%    & Does your project have the potential for military applications? & \xmark \\
+%    & Does your project have an exclusive civilian application focus? & \cmark \\
+%    & Will your project use or produce goods or information that will require export licenses in accordance with legislation on dual use items? & \xmark \\
+%    & Does your project affect current standards in military ethics? & \xmark \\
+% \midrule 
+%    \multicolumn{2}{l}{Section 7: Misuse} \\
+%    & Does your project have the potential for malevolent/criminal/terrorist abuse? & \xmark \\
+%    & Does your project involve information on/or the use of biological-, chemical-, nuclear/radiological-security sensitive materials and explosives, and means of their delivery? & \xmark \\
+%    & Does your project involve the development of technologies or the creation of information that could have severe negative impacts on human rights standards, if misapplied? & \xmark \\
+%    & Does your project have the potential for terrorist or criminal abuse? & \xmark \\
+% \midrule 
+%    \multicolumn{2}{l}{Section 8: Legal Issues} \\
+%    & Will your project use or produce software for which there are copyright licensing implications? & \cmark \\
+%    & Will your project use or produce goods or information for which there are data protection, or other legal implications? & \cmark \\
+% \midrule 
+%    \multicolumn{2}{l}{Section 9: Other Ethics} \\
+%    & Are there any other ethics issues that should be taken into consideration? & \cmark \\
+% \bottomrule \\
+% 
+% \caption{Ethics checklist.}
+% \label{tab:ethicschecklist}
+% \end{longtable}
+% 
+% 
